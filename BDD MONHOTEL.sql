@@ -817,22 +817,26 @@ prs person;
 TYPE TabPerson IS TABLE OF person INDEX BY binary_integer;
 tableau TabPerson;
 
+i binary_integer := 0;
+j binary_integer := 0;
 begin
 
 prs.FIRST_NAME := 'MAHMOUDI';
 prs.LAST_NAME := 'MOHAMMED EL AMINE';
-tableau(0) := prs;
-
+tableau(i) := prs;
+i := i+1;
 prs.FIRST_NAME := 'LAURENT';
 prs.LAST_NAME := 'PAGLIARI';
-tableau(1) := prs;
-
+tableau(i) := prs;
+i := i+1;
 prs.FIRST_NAME := 'GABRIEL';
 prs.LAST_NAME := 'JESUS';
-tableau(2) := prs;
+tableau(i) := prs;
 
-dbms_output.put_line(tableau(0).FIRST_NAME||' '||tableau(0).LAST_NAME);
-dbms_output.put_line(tableau(1).FIRST_NAME||' '||tableau(1).LAST_NAME);
-dbms_output.put_line(tableau(2).FIRST_NAME||' '||tableau(2).LAST_NAME);
+while(j<=i)loop
+  dbms_output.put_line(tableau(j).FIRST_NAME||' '||tableau(j).LAST_NAME);
+  j := j+1;
+end loop;  
 
-end;	
+
+end;
