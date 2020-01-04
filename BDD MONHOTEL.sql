@@ -800,12 +800,39 @@ insert into mh_vrs_dtl_agc values( '1234','--------', 6000, '2018-04-08','V23421
 insert into mh_reservation values ('1234','001','123456', '--------', null, '2018-04-03', '2018-04-05', false, 2, 'Demi', 5000.00, 1000.00, false, '123123', NOW(), 2) ;
 insert into mh_clt_s_ch values ('Mahmoudi Med ElAmine', '123456', '1987-01-18', 'Annaba', 'Algerienne', 'Carte national', '74108502', '2017-05-06', 'Tarf', 'B27 LD Ramdan ati eltarf', '0670298533', '123123', '1234', false, 'no thing') ;
 insert into mh_clt_s_ch values ('Harari Madjid', '123456', '1985-05-10', 'Annaba', 'Algerienne', 'Carte national', '96541280', '2017-05-06', 'Tarf', 'B21 LB Ramdan ati eltarf', '0661295002', '123123', '1234', false, 'no thing') ;
-
-
-
-
-
-
-
 insert into mh_reservation values ('1234','001','123456', '--------', null, '2018-04-12', '2018-04-15', false, 3, 'Complette', 8000.00, 0.0, false, '124124', NOW(), 2) ;
-                            
+        
+//----------------------RECORD TEST PLSQL--------------------------------	
+
+DECLARE
+
+TYPE person IS RECORD
+(
+FIRST_NAME VARCHAR2(150),
+LAST_NAME VARCHAR2(150)
+);
+
+prs person;
+
+TYPE TabPerson IS TABLE OF person INDEX BY binary_integer;
+tableau TabPerson;
+
+begin
+
+prs.FIRST_NAME := 'MAHMOUDI';
+prs.LAST_NAME := 'MOHAMMED EL AMINE';
+tableau(0) := prs;
+
+prs.FIRST_NAME := 'LAURENT';
+prs.LAST_NAME := 'PAGLIARI';
+tableau(1) := prs;
+
+prs.FIRST_NAME := 'GABRIEL';
+prs.LAST_NAME := 'JESUS';
+tableau(2) := prs;
+
+dbms_output.put_line(tableau(0).FIRST_NAME||' '||tableau(0).LAST_NAME);
+dbms_output.put_line(tableau(1).FIRST_NAME||' '||tableau(1).LAST_NAME);
+dbms_output.put_line(tableau(2).FIRST_NAME||' '||tableau(2).LAST_NAME);
+
+end;	
